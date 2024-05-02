@@ -1,34 +1,37 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 
 import '../models/menus.dart';
 import '../services/apiservice.dart';
 
 class Menuprovider extends ChangeNotifier{
-  final ApiService dataService = ApiService();
-
-
+  final ApiService apiService = ApiService();
   List<Menus> dataList = [];
 
-  List<Menus> get dataModels => dataList;
+  List<Menus> get dataMenus => dataList;
 
   Future<void> fetchData() async {
   try {
-  dataList =(await dataService.getProducts())! ;
+  dataList =(await apiService.getProducts())! ;
   notifyListeners();
   }
   catch (e) {
-  print("Error:$e");
+  if (kDebugMode) {
+    print("Error:$e");
+  }
   }
   }
 
   Future<void> addData(Menus dataList) async {
   try {
-  await dataService.addData(dataList);
+  await apiService.addData(dataList);
   // dataService.fetchData();
   }
   catch (e) {
-  print("Error data : $e");
+  if (kDebugMode) {
+    print("Error data : $e");
+  }
     }
     }
 

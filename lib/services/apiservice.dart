@@ -1,12 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../models/menus.dart';
 
 class ApiService{
-  static const String Baseurl= "http://localhost:3000/";
+  static const String Baseurl= "http://localhost:3000/menus";
   static var client = http.Client();
 
    Future<List<Menus>?> getProducts() async {
